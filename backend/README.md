@@ -66,33 +66,104 @@ One note before you delve into your tasks: for each endpoint you are expected to
 8. Create a POST endpoint to get questions to play the quiz. This endpoint should take category and previous question parameters and return a random questions within the given category, if provided, and that is not one of the previous questions. 
 9. Create error handlers for all expected errors including 400, 404, 422 and 500. 
 
-REVIEW_COMMENT
+
+
+
+
+
+
+
+## API Doc
 ```
-This README is missing documentation of your endpoints. Below is an example for your endpoint to get all categories. Please use it as a reference for creating your documentation and resubmit your code. 
+First endpoint GET /categories
+No need for authentication
+Request Arguments: None
+the response in JSON format
+{
+  "categories": {
+    "1": "Science", 
+    "2": "Art", 
+    "3": "Geography", 
+    "4": "History", 
+    "5": "Entertainment", 
+    "6": "Sports"
+  }, 
+  "success": true
+}
 
-Endpoints
-GET '/categories'
-GET ...
-POST ...
-DELETE ...
+Second endpoint Delete /questions/<question_id>
+No need for authentication
+Takeing id as parameter  
+the response in JSON format
+{
+  "deleted": "28", 
+  "success": true
+}
 
-GET '/categories'
-- Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category
-- Request Arguments: None
-- Returns: An object with a single key, categories, that contains a object of id: category_string key:value pairs. 
-{'1' : "Science",
-'2' : "Art",
-'3' : "Geography",
-'4' : "History",
-'5' : "Entertainment",
-'6' : "Sports"}
+Third endpoint POST /quizzes
+No need for authentication
+Getting random question based on previous questions 
+Request Arguments: None
+the response in JSON format
+{
+  "question": {
+    "answer": "Jackson Pollock", 
+    "category": 2, 
+    "difficulty": 2, 
+    "id": 19, 
+    "question": "Which American artist was a pioneer of Abstract Expressionism, and a leading exponent of action painting?141"
+  }, 
+  "success": true
+}
+
+Fourth endpoint GET /categories/<category_id>/questions
+No need for authentication
+Takeing id as parameter
+geeting guestions for specified category using category id
+the response in JSON format
+{
+  "current_category": "1", 
+  "questions": [
+    {
+      "answer": "The Liver", 
+      "category": 1, 
+      "difficulty": 4, 
+      "id": 20, 
+      "question": "What is the heaviest organ in the human body?"
+    }, 
+    {
+      "answer": "Alexander Fleming", 
+      "category": 1, 
+      "difficulty": 3, 
+      "id": 21, 
+      "question": "Who discovered penicillin?"
+    }, 
+    {
+      "answer": "Blood", 
+      "category": 1, 
+      "difficulty": 4, 
+      "id": 22, 
+      "question": "Hematology is a branch of medicine involving the study of what?"
+    }, 
+    {
+      "answer": "as", 
+      "category": 1, 
+      "difficulty": 1, 
+      "id": 28, 
+      "question": "22"
+    }
+  ], 
+  "success": true, 
+  "total_questions": 4
+}
+
+
 
 ```
-
 
 ## Testing
-To run the tests, run
 ```
+To run the tests, run
 dropdb trivia_test
 createdb trivia_test
 psql trivia_test < trivia.psql
